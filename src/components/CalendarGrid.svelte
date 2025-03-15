@@ -91,13 +91,38 @@
     /**
      * Return all events in "currentEvents" that fall on the given "date".
      */
-    function getEventsForDate(date) {
-      const dateString = formatDate(date);
-      return currentEvents.filter(ev => {
-        const start = formatDate(ev.startDate);
-        const end = formatDate(ev.endDate);
-        return dateString >= start && dateString <= end;
-      });
+     function getEventsForDate(date) {
+        const dateString = formatDate(date);
+        return currentEvents.map(ev => {
+            const start = new Date(ev.startDate);
+            const end = new Date(ev.endDate);
+            
+            // Check if event spans multiple months
+            const spansMonths = 
+                (start.getMonth() !== end.getMonth()) || 
+                (start.getFullYear() !== end.getFullYear());
+
+            // Is this the last day of the month?
+            const isLastDayOfMonth = 
+                date.getDate() === new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+
+            // Is this the first day of the month?
+            const isFirstDayOfMonth = date.getDate() === 1 && formatDate(date) !== formatDate(start);
+
+            // Only apply effects if event spans months and we're at a month boundary
+            const isEndOfSpan = spansMonths && isLastDayOfMonth;
+            const isStartOfSpan = spansMonths && isFirstDayOfMonth;
+
+            return {
+                ...ev,
+                isStartOfSpan,
+                isEndOfSpan
+            };
+        }).filter(ev => {
+            const start = formatDate(ev.startDate);
+            const end = formatDate(ev.endDate);
+            return dateString >= start && dateString <= end;
+        });
     }
   
     /**
@@ -158,18 +183,36 @@
   
           <div class="days">
             {#each getDaysForMonth(month) as d}
-              <div class="day {d.otherMonth ? 'other-month' : ''}">
-                {d.date.getDate()}
-                <div class="event-markers">
-                  {#if !d.otherMonth} <!-- Only render events for days in the current month -->
-                    {#each getEventsForDate(d.date) as ev}
-                      <div class="event-marker" style="background-color: {ev.color}"></div>
-                    {/each}
-                  {/if}
+                <div class="day {d.otherMonth ? 'other-month' : ''}">
+                    {d.date.getDate()}
+                    <div class="event-markers">
+                        {#if !d.otherMonth}
+                            {#each getEventsForDate(d.date) as ev}
+                            <div 
+                            class="event-marker {ev.isStartOfSpan ? 'start-of-span' : ''} {ev.isEndOfSpan ? 'end-of-span' : ''}"
+                            style="
+                                background: {
+                                    ev.isStartOfSpan 
+                                        ? `linear-gradient(to right, ${ev.color}00, ${ev.color})` 
+                                        : ev.isEndOfSpan 
+                                            ? `linear-gradient(to left, ${ev.color}00, ${ev.color})`
+                                            : ev.color
+                                };
+                                background: {
+                                    ev.isStartOfSpan 
+                                        ? `linear-gradient(to right, rgba(0,0,0,0), ${ev.color})` 
+                                        : ev.isEndOfSpan 
+                                            ? `linear-gradient(to left, rgba(0,0,0,0), ${ev.color})`
+                                            : ev.color
+                                }
+                            "
+                        ></div>
+                            {/each}
+                        {/if}
+                    </div>
                 </div>
-              </div>
             {/each}
-          </div>
+        </div>
 
 
         </div>
