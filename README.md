@@ -2,6 +2,8 @@
 
 Calendar built with [Astro](https://astro.build/) and [Svelte](https://svelte.dev/). It lets you add, edit, and delete events, then shows them on an interactive 8-month calendar.
 
+![Image](https://github.com/user-attachments/assets/f2c6c47d-b6f4-449b-9427-e292044c05d8)
+
 ## Run
 
 1. Install dependencies:
