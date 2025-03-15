@@ -35,6 +35,12 @@
   </div>
 
   <footer class="footer">
-    <p>Made with 🩶 by Jeffrey Zhou with Astro + Svelte</p>
+    <p>
+        Made with 🩶 by 
+        <a href="https://jeffreyszhou.com/" target="_blank" rel="noopener noreferrer">Jeffrey Zhou</a> 
+        with <a href="https://astro.build/" target="_blank" rel="noopener noreferrer">Astro</a> + 
+        <a href="https://svelte.dev/" target="_blank" rel="noopener noreferrer">Svelte</a>
+    </p>
   </footer>
+
 

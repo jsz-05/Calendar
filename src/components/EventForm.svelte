@@ -27,6 +27,7 @@
         const sDate = new Date(`${startDate}T00:00:00Z`);
         const eDate = new Date(`${endDate}T00:00:00Z`);
 
+        // Idk why its offset but this fixes it lol
         sDate.setDate(sDate.getDate() + 1);
         eDate.setDate(eDate.getDate() + 1);
 
