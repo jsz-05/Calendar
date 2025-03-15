@@ -13,14 +13,16 @@
     See the License for the specific language governing permissions and
     limitations under the License.
  -->
-
- 
+    
  <script>
     import { onMount } from 'svelte';
     // "events" is the Svelte store
     // "$events" is the auto-subscription inside the template
     import { events } from '../stores/eventStore.js';
     import { formatDate } from '../utils/dateUtils.js';
+
+    import { fade, slide } from 'svelte/transition';
+
   
     // The start date for our calendar range
     let viewStartDate = null;
@@ -222,6 +224,8 @@
                                             : ev.color
                                 }
                             "
+                            transition:slide={{duration: 500}}
+
                         ></div>
                             {/each}
                         {/if}
