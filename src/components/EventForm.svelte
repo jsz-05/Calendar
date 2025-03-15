@@ -3,49 +3,51 @@
     import { onMount } from 'svelte';
     import { events } from '../stores/eventStore.js';
     import { formatDate } from '../utils/dateUtils.js';
-  
+
     let eventName = '';
     let eventType = 'academic';
     let eventColor = '#4285F4';
     let startDate = '';
     let endDate = '';
-  
+
     onMount(() => {
-      // Set default dates
-      const today = new Date();
-      startDate = formatDate(today);
-  
-      const nextMonth = new Date();
-      nextMonth.setMonth(nextMonth.getMonth() + 1);
-      endDate = formatDate(nextMonth);
+        // Set default dates
+        const today = new Date();
+        startDate = formatDate(today);
+
+        const nextMonth = new Date();
+        nextMonth.setMonth(nextMonth.getMonth() + 1);
+        endDate = formatDate(nextMonth);
     });
-  
+
     function addEvent(e) {
-      e.preventDefault();
-  
-      const sDate = new Date(startDate);
-      const eDate = new Date(endDate);
-      if (sDate > eDate) {
-        alert('End date must be after start date');
-        return;
-      }
-  
-      const newEvent = {
-        id: Date.now(),
-        name: eventName,
-        type: eventType,
-        color: eventColor,
-        startDate: sDate,
-        endDate: eDate
-      };
-  
-      // Update the store
-      events.update(evts => [...evts, newEvent]);
-  
-      // Reset form
-      eventName = '';
+        e.preventDefault();
+
+        // Parse dates as UTC to avoid timezone issues
+        const sDate = new Date(`${startDate}T00:00:00Z`);
+        const eDate = new Date(`${endDate}T00:00:00Z`);
+
+        if (sDate > eDate) {
+            alert('End date must be after start date');
+            return;
+        }
+
+        const newEvent = {
+            id: Date.now(),
+            name: eventName,
+            type: eventType,
+            color: eventColor,
+            startDate: sDate,
+            endDate: eDate
+        };
+
+        // Update the store
+        events.update(evts => [...evts, newEvent]);
+
+        // Reset form
+        eventName = '';
     }
-  </script>
+</script>
   
   <div class="form-container">
     <div class="form-title">Add New Event</div>
