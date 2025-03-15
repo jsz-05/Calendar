@@ -6,7 +6,7 @@ export default defineConfig({
 
   output: 'static',
 
-  base: '/calendar/',
+  base: '/Calendar/',
 
   integrations: [svelte()],
 });
