@@ -23,3 +23,5 @@ Wanted an easier way to visualize school terms, internships, etc so made a calen
 - Fill in the form and click “Add Event.”  
 - View updates with colored markers.  
 - Manage events in the “Your Events” list.  
+
+This project is licensed under the Apache License 2.0 - see the [LICENSE](LICENSE) file for details.
