@@ -2,7 +2,7 @@
 
 Simple Calendar built with [Astro](https://astro.build/) and [Svelte](https://svelte.dev/). It lets you add, edit, and delete events, then shows them on an interactive 8-month calendar. Stores events in a Svelte store and persists them with `localStorage`.
 
-Wanted an easier way to plan school terms, internship dates, etc. It was especially useful for figuring when to negotiate start dates for and visualizing overlaps. I liked the design of Google Flights date selection calendar so the UI is based off that design.
+Wanted an easier way to visualize school terms, internships, etc so made a calendar. It was especially useful for figuring when to negotiate start dates for and seeing overlaps. I liked the design of the Google Flights departure/return date selector so the UI is based off that design.
 
 ![Image](https://github.com/user-attachments/assets/f2c6c47d-b6f4-449b-9427-e292044c05d8)
 
