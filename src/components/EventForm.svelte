@@ -27,6 +27,9 @@
         const sDate = new Date(`${startDate}T00:00:00Z`);
         const eDate = new Date(`${endDate}T00:00:00Z`);
 
+        sDate.setDate(sDate.getDate() + 1);
+        eDate.setDate(eDate.getDate() + 1);
+
         if (sDate > eDate) {
             alert('End date must be after start date');
             return;
