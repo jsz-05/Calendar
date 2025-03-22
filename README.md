@@ -1,6 +1,6 @@
-# Simple Calendar Visualizer (Astro + Svelte)
+# Simple Calendar Visualizer
 
-Simple Calendar built with [Astro](https://astro.build/) and [Svelte](https://svelte.dev/). It lets you add, edit, and delete events, then shows them on an interactive 8-month calendar. Stores events in a Svelte store and persists them with `localStorage`.
+Simple Calendar built with [Svelte](https://svelte.dev/). It lets you add, edit, and delete events, then shows them on an interactive 8-month calendar. Stores events in a Svelte store and persists them with `localStorage`.
 
 Wanted an easier way to visualize school terms, internships, etc so made a calendar. It was especially useful for figuring when to negotiate start dates for and seeing overlaps. I liked the design of the Google Flights departure/return date selector so the UI is based off that design.
 
